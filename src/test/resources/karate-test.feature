@@ -16,7 +16,7 @@ Feature: ExcepcionAAA-1088
 
   @id:1 @ObtenerTodosPersonajes
   Scenario Outline: T-API-AAA-1088-CA1- Obtener todos los personajes
-    Given url baseUrl + '/testuser/api/characters'
+    Given url baseUrl + '/jluceroc/api/characters'
     When method GET
     Then status 200
     * print response
@@ -26,7 +26,7 @@ Feature: ExcepcionAAA-1088
 
   @id:2 @ObtenerPorIdNoExistente
   Scenario Outline: T-API-AAA-1088-CA2- Obtener personaje por ID no existente
-    Given url baseUrl + '/testuser/api/characters/9999'
+    Given url baseUrl + '/jluceroc/api/characters/9999'
     When method GET
     Then status 404
     * print response
@@ -38,7 +38,7 @@ Feature: ExcepcionAAA-1088
   Scenario Outline:  T-API-AAA-1088-CA3 - Crear personaje exitoso
     * configure ssl = true
     * header content-type = 'application/json'
-    Given url baseUrl + '/testuser/api/characters'
+    Given url baseUrl + '/jluceroc/api/characters'
     And request body
     When method POST
     Then status 201
@@ -71,7 +71,7 @@ Feature: ExcepcionAAA-1088
     * def createdId = csvData[0]
     * print 'ID leído desde CSV:', createdId
     * if (createdId == null || createdId == 'id') karate.fail('ID no encontrado en el archivo CSV, debe ejecutar primero el escenario 3')
-    Given url baseUrl + '/testuser/api/characters/'  + createdId
+    Given url baseUrl + '/jluceroc/api/characters/'  + createdId
     When method GET
     Then status 200
     * print response
@@ -83,7 +83,7 @@ Feature: ExcepcionAAA-1088
   Scenario Outline:  T-API-AAA-1088-CA5 - Crear personaje con nombre duplicado
     * configure ssl = true
     * header content-type = 'application/json'
-    Given url baseUrl + '/testuser/api/characters'
+    Given url baseUrl + '/jluceroc/api/characters'
     And def user = read('classpath:/data/body.json')
     And request user
     When method POST
@@ -97,7 +97,7 @@ Feature: ExcepcionAAA-1088
   Scenario Outline:  T-API-AAA-1088-CA6 - Crear personaje con campos obligatorios
     * configure ssl = true
     * header content-type = 'application/json'
-    Given url baseUrl + '/testuser/api/characters'
+    Given url baseUrl + '/jluceroc/api/characters'
     And def user = read('classpath:/data/bodyVacio.json')
     And request user
     When method POST
@@ -122,7 +122,7 @@ Feature: ExcepcionAAA-1088
     * def createdId = csvData[0]
     * print 'ID leído desde CSV para actualizar:', createdId
     * if (createdId == null || createdId == 'id') karate.fail('ID no encontrado en el archivo CSV, debe ejecutar primero el escenario 3')
-    Given url baseUrl + '/testuser/api/characters/' + createdId
+    Given url baseUrl + '/jluceroc/api/characters/' + createdId
     And request body
     When method PUT
     Then status 200
@@ -135,7 +135,7 @@ Feature: ExcepcionAAA-1088
   Scenario Outline:  T-API-AAA-1088-CA8 - Actualizar personaje no existente
     * configure ssl = true
     * header content-type = 'application/json'
-    Given url baseUrl + '/testuser/api/characters/' + '9999'
+    Given url baseUrl + '/jluceroc/api/characters/' + '9999'
     And request body
     When method PUT
     Then status 404
@@ -159,7 +159,7 @@ Feature: ExcepcionAAA-1088
     * def createdId = csvData[0]
     * print 'ID leído desde CSV para eliminar:', createdId
     * if (createdId == null || createdId == 'id') karate.fail('ID no encontrado en el archivo CSV, debe ejecutar primero el escenario 3')
-    Given url baseUrl + '/testuser/api/characters/' + createdId
+    Given url baseUrl + '/jluceroc/api/characters/' + createdId
     When method DELETE
     Then status 204
     And print response
@@ -171,7 +171,7 @@ Feature: ExcepcionAAA-1088
   Scenario Outline:  T-API-AAA-1088-CA10 - Eliminar personaje no existente
     * configure ssl = true
     * header content-type = 'application/json'
-    Given url baseUrl + '/testuser/api/characters/' + '9999'
+    Given url baseUrl + '/jluceroc/api/characters/' + '9999'
     When method DELETE
     Then status 404
     And print response
